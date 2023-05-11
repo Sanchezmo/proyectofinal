@@ -1,4 +1,3 @@
-
 <nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="index.php"> <img src="./img/chef.png" alt="Logo" width="30" height="24"
@@ -13,7 +12,7 @@
                 <a class="nav-link " href="index.php">HOME</a>
                 <a class="nav-link " href="recetas.php">RECETAS</a>
                 <a class="nav-link " href="#">SOBRE NOSOTROS</a>
-                
+
                 <!--<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>-->
 
                 <script>
@@ -40,9 +39,10 @@
             </div>
         </div>
         <?php   if($_SESSION['admin']=="SI"){echo '<a class="nav-link " href="adminrecipe.php">ADMINISTRAR</a>';} ?>
-        <?php   if($_SESSION['login']=="OK"){echo '<a class="nav-link right px-8 text-white " href="control.php?unlog=unlog">SALIR</a>';} ?>
+        <?php  $name='<a class="nav-link right px-8 text-white" href="user.php">'.$_SESSION['customerName'].'</a><a class="nav-link right px-8 text-white " href="control.php?unlog=unlog">SALIR</a>';
+         if($_SESSION['login']=="OK"){echo $name;} ?>
         <?php   if($_SESSION['login']!="OK"){echo '<a class="nav-link right px-8 text-white " href="login.php">LOGIN</a>
         <a class="nav-link right px-8 text-white " href="register.php">REGISTRARSE</a>';} ?>
-        
+
     </div>
 </nav>

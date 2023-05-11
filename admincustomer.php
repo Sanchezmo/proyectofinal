@@ -37,6 +37,9 @@ if($_SESSION['admin']!="SI"){header("Location: login.php");}
         <li class="nav-item">
             <a class="nav-link active" aria-current="admincustomer.php" href="#">Suscriptores</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link"  href="adminmedia.php">Media</a>
+        </li>
     </ul>
 </div>
 <div class="container-fluid ">

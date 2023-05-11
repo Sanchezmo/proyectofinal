@@ -11,8 +11,12 @@ if(isset($_POST['user'])&&isset($_POST['password'])){
             if($ok){
                 
              $_SESSION['login']='OK';
-             $_SESSION['admin']=$ok['Admin'];      
-             header("Location: recetas.php");
+             $_SESSION['admin']=$ok['Admin'];
+             $_SESSION['premium']=$ok['Premium'];
+             $_SESSION['email']=$ok['Email'];
+             $_SESSION['id']=$ok['CustomerID'];
+             $_SESSION['customerName']=$ok['CustomerName'];      
+             header("Location: user.php");
             }else{
                 $_SESSION['mensaje']='Usuario o contraseña incorrecta';
                 header("Location: login.php");

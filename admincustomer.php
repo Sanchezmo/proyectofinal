@@ -17,11 +17,12 @@ if($_SESSION['admin']!="SI"){header("Location: login.php");}
 //update
     if(isset($_POST['Nombre'])&& isset($_POST['Email'])&& isset($_POST['Admin'])&& isset($_POST['Premium'])&& isset($_POST['Id'])&& isset($_POST['Password'])){
             $nombre=$_POST['Nombre'];
-            $email=$_POST['>Email'];
+            $email=$_POST['Email'];
             $admin=$_POST['Admin'];
             $premium=$_POST['Premium'];
-            $password=$_POST['>Password'];
-            $query= "UPDATE Articulos SET CustomerName='$nombre', Email='$email', Admin='$admin', Premium='$premium',Pass='$password' WHERE Id=$id";
+            $password=$_POST['Password'];
+            $id=$_POST['Id'];
+            $query= "UPDATE Users SET CustomerName='$nombre', Email='$email', Admin='$admin', Premium='$premium',Pass='$password' WHERE CustomerID=$id";
             mysqli_query($conexion,$query);
             header("Location: admincustomer.php");
            }

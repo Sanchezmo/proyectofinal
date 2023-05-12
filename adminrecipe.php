@@ -33,7 +33,7 @@ if($_SESSION['admin']!="SI"){header("Location: login.php");}
             
             //introducimos la receta con el id del archivo
             
-            $queryrecipe="INSERT INTO Recipes (RecipeName, Recipe, MediaID, CategoryID, OwnerID, Premium, Vote)VALUES('$nombre','$recipe',$idmedia,$category,$ownerID,'$premium',0)";
+            $queryrecipe="INSERT INTO Recipes (RecipeName, Recipe, MediaID, CategoryID, OwnerID, Premium)VALUES('$nombre','$recipe',$idmedia,$category,$ownerID,'$premium')";
             mysqli_query($conexion,$queryrecipe);
             header("Location: adminrecipe.php");
         }

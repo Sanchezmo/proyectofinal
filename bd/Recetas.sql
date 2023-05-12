@@ -1,7 +1,7 @@
 
 CREATE DATABASE IF NOT EXISTS Recetas;
 USE Recetas;
-
+DROP TABLE IF EXISTS Votos;
 DROP TABLE IF EXISTS Coments;
 DROP TABLE IF EXISTS Recipes;
 DROP TABLE IF EXISTS LogrosUser;
@@ -47,7 +47,6 @@ CREATE TABLE Recipes(
     CategoryID INTEGER,
     OwnerID INTEGER,
     Premium VARCHAR(2),
-    Vote INT(10),
 	FOREIGN KEY (CategoryID) REFERENCES Categories (CategoryID)ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (MediaID) REFERENCES Media (MediaID)ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (OwnerID) REFERENCES Users (CustomerID)ON DELETE CASCADE ON UPDATE CASCADE
@@ -69,6 +68,14 @@ CREATE TABLE LogrosUser(
     FOREIGN KEY (OwnerID) REFERENCES Users (CustomerID)ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (LogroID) REFERENCES Logros (LogroID)ON DELETE CASCADE ON UPDATE CASCADE
 );
+CREATE TABLE Votos(
+    VotoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+    OwnerID INTEGER,
+    RecipeID INTEGER,
+    FOREIGN KEY (OwnerID) REFERENCES Users (CustomerID)ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (RecipeID) REFERENCES Recipes (RecipeID)ON DELETE CASCADE ON UPDATE CASCADE
+
+);
 
 
 INSERT INTO Users (CustomerName, Email, Pass,Admin,Premium) VALUES("admin", "admin@admin.com", "admin","SI","SI");
@@ -76,7 +83,7 @@ INSERT INTO Users (CustomerName, Email, Pass,Admin,Premium) VALUES("user", "user
 INSERT INTO Users (CustomerName, Email, Pass,Admin,Premium) VALUES("userpremium", "userpremium@admin.com", "user","NO","SI");
 INSERT INTO Categories (CategoryName, Description) VALUES("Cocina Española","Platos tipicos de España");
 INSERT INTO Media(MediaPath ,MediaSize,MediaName, Extension,OwnerID) VALUES("../uploadssalchicha.jpg",15555000,"uploadssalchicha","jpg",1);
-INSERT INTO Recipes (RecipeName,Recipe,MediaID,CategoryID,Premium,OwnerID,Vote)VALUES ("Tortilla de patata","Se frien patatas y luego se baten huevos , se mezcla y a la sarten",1,1,"NO",1,0);
+INSERT INTO Recipes (RecipeName,Recipe,MediaID,CategoryID,Premium,OwnerID)VALUES ("Tortilla de patata","Se frien patatas y luego se baten huevos , se mezcla y a la sarten",1,1,"NO",1);
 INSERT INTO Logros (Logro,LogroDescription)VALUES("Participativo","Participa aportando 3 recetas");
 INSERT INTO Logros (Logro,LogroDescription)VALUES(" Muy Participativo","Participa aportando 10 recetas");
 INSERT INTO Logros (Logro,LogroDescription)VALUES("Dios culinario","Participa aportando 50 recetas");

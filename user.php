@@ -32,7 +32,7 @@ if($_SESSION['login']!="OK"){header("Location: login.php");}
             
             //introducimos la receta con el id del archivo
             
-            $queryrecipe="INSERT INTO Recipes (RecipeName, Recipe, MediaID, CategoryID, OwnerID, Premium, Vote)VALUES('$nombre','$recipe',$idmedia,$category,$ownerID,'NO',0)";
+            $queryrecipe="INSERT INTO Recipes (RecipeName, Recipe, MediaID, CategoryID, OwnerID, Premium)VALUES('$nombre','$recipe',$idmedia,$category,$ownerID,'NO')";
             mysqli_query($conexion,$queryrecipe);
             header("Location: user.php");
         }
@@ -44,10 +44,9 @@ if($_SESSION['login']!="OK"){header("Location: login.php");}
         $nombre=$_POST['RecipeName'];
         $recipe=$_POST['Recipe'];
         $category=$_POST['CategoryID'];
-        //$premium=$_POST['Premium'];
         $cambiomedia=$_POST['CambiarMedia'];
         $ownerID=$_SESSION['id'];
-        $queryupdate= "UPDATE Recipes SET RecipeName='$nombre', Recipe='$recipe', MediaID='$cambiomedia',Premium='$premium' WHERE RecipeID=$id";
+        $queryupdate= "UPDATE Recipes SET RecipeName='$nombre', Recipe='$recipe', MediaID='$cambiomedia' WHERE RecipeID=$id";
         mysqli_query($conexion,$queryupdate);
         header("Location: user.php");
     }
@@ -60,11 +59,12 @@ if($_SESSION['login']!="OK"){header("Location: login.php");}
             <a class="nav-link active" aria-current="page" href="user.php">Mis Recetas</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="mislogros.php">Mis Logros</a>
+            <a class="nav-link" href="usermedia.php">Mi Multimedia</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="mimultimedia.php">Mi Multimedia</a>
+            <a class="nav-link" href="mysuscription.php">Mi Suscripción</a>
         </li>
+        
     </ul>
 </div>
 <div class="container-fluid ">
@@ -126,7 +126,6 @@ if($_SESSION['login']!="OK"){header("Location: login.php");}
                         <th scope="col">NOMBRE</th>
                         <th scope="col">RECETA</th>
                         <th scope="col">CATEGORÍA</th>
-                        <th scope="col">PREMIUM</th>
                         <th scope="col">MEDIA</th>
                         <th scope="col">CAMBIAR MEDIA</th>
                         <th scope="col">ACTUALIZAR</th>
@@ -144,21 +143,12 @@ if($_SESSION['login']!="OK"){header("Location: login.php");}
                     <td><input name="RecipeName" type="text" value="<?php echo $row['RecipeName']?>" size="25"></td>
                     <td><textarea name="Recipe" require placeholder="Contenido" cols="70" rows="12" ><?php echo $row['Recipe']?></textarea></td>
                     <td><select name="CategoryID">
-                            <?php $query_category='SELECT * FROM Categories';
+                            <?php $query_category="SELECT * FROM Categories";
                     $result_category=mysqli_query($conexion,$query_category);
                     while($row_category=mysqli_fetch_array($result_category)){?>
                             <option value="<?php echo $row_category['CategoryID']?>"<?php if($row['CategoryID']==$row_category['CategoryID']){echo 'selected';} ?>><?php echo $row_category['CategoryName']?></option>
                             <?php } ?>
-                        </select></td>
-                        <td><select name="Premium">
-                            <?php if($row['Premium']=="SI"){?>
-                            <option value="SI" selected>SI</option>
-                            <option value="NO">NO</option>
-                            <?php }else{ ?>
-                            <option value="SI">SI</option>
-                            <option value="NO" selected>NO</option>
-                            <?php } ?>
-                        </select></td>
+                       
                     <?php $query_media="SELECT * FROM Media WHERE MediaID = ".$row['MediaID']."";
                     $result_media=mysqli_query($conexion,$query_media);
                     $row_media = mysqli_fetch_array($result_media);?>
@@ -172,7 +162,7 @@ if($_SESSION['login']!="OK"){header("Location: login.php");}
                         echo $img;
                          }?>
                     <td><select name="CambiarMedia">
-                            <?php $query_media2='SELECT * FROM Media';
+                            <?php $ownerID=$_SESSION['id']; $query_media2="SELECT * FROM Media WHERE OwnerID = $ownerID";
                     $result_media2=mysqli_query($conexion,$query_media2);
                     while($row_media2=mysqli_fetch_array($result_media2)){?>
                             <option value="<?php echo $row_media2['MediaID']?>"<?php if($row['MediaID']==$row_media2['MediaID']){echo 'selected';} ?>>Imagen <?php echo $row_media2['MediaID']?></option>

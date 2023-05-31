@@ -1,7 +1,7 @@
 <nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="index.php"> <img src="./img/chef.png" alt="Logo" width="30" height="24"
-                class="d-inline-block align-text-top"> RECETAS.ES</a>
+                class="d-inline-block align-text-top"> SHARE YOUR RECIPE</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -9,9 +9,13 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="nav col-12 col-lg-auto mb-2 justify-content-end mb-md-0">
                 <span class="nav-link" style="color:white;" id="time" href="#"></span>
-                <a class="nav-link " href="index.php">HOME</a>
-                <a class="nav-link " href="recetas.php">RECETAS</a>
-                <a class="nav-link " href="#">SOBRE NOSOTROS</a>
+                
+                <form class="d-flex ms-5" role="search" method="get" action="buscador.php">
+                    <input class="form-control me-2" type="search" placeholder="Busca receta por nombre " aria-label="Search" name="busqueda">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+
+
 
                 <!--<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>-->
 

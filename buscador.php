@@ -18,7 +18,7 @@ if($vote_count['Vote']==0){
    
     $query_voto="INSERT INTO Votos(RecipeID,OwnerID) VALUES($id,$owner)";
     mysqli_query($conexion,$query_voto);
-    header("Location: index.php");
+    header("Location: buscador.php");
 }else{
    
     $_SESSION['mensajevoto']="Ya has votado";
@@ -27,6 +27,7 @@ if($vote_count['Vote']==0){
 if(isset($_GET['id'])&&(empty($_SESSION['id']))){
     $_SESSION['mensajevoto']="Debes ser un usuario registrado para votar. <a href='login.php'> Login</a> o <a href='register.php'> Registrar</a>";  
 }
+
 ?>
 <hr>
 </hr>
@@ -35,7 +36,7 @@ if(isset($_GET['id'])&&(empty($_SESSION['id']))){
 <?php } ?>
 <div class="container-fluid">
     <div class="row row-cols-4 mt-5">
-        <?php $query='SELECT * FROM Recipes ORDER BY RecipeID';
+        <?php $busqueda="%".$_GET['busqueda']."%"; $query="SELECT * FROM Recipes WHERE RecipeName LIKE '$busqueda'";
             $result=mysqli_query($conexion,$query);
              while ($row = mysqli_fetch_array($result)){?>
         <div class="col">
@@ -70,7 +71,7 @@ if(isset($_GET['id'])&&(empty($_SESSION['id']))){
                     </div>
                 </div>
                 <div class="card-footer">
-                    <input type="button" onclick="location.href='index.php?id=<?php echo $row['RecipeID']?>'"
+                    <input type="button" onclick="location.href='buscador.php?id=<?php echo $row['RecipeID']?>'"
                         value="VOTAR" class="btn btn-success" />
                     <?php $idr=$row['RecipeID'];
                     $query_numvotos="SELECT Count(*) AS numvotos FROM Votos WHERE RecipeID= $idr";

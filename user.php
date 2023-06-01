@@ -64,6 +64,9 @@ if($_SESSION['login']!="OK"){header("Location: login.php");}
         <li class="nav-item">
             <a class="nav-link" href="mysuscription.php">Mi Suscripción</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="logros.php">Logros</a>
+        </li>
         
     </ul>
 </div>

@@ -23,18 +23,22 @@ if(isset($_POST['premium'])){
         <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="mysuscription.php">Mi Suscripción</a>
         </li>
-        
+        <li class="nav-item">
+            <a class="nav-link" href="logros.php">Logros</a>
+        </li>
+
     </ul>
+</div>
 <?php $query_premium="SELECT * FROM Users WHERE CustomerID=$id";
     $rs=mysqli_query($conexion,$query_premium);
     $row=mysqli_fetch_array($rs);
     $premium=$row['Premium'];
-?>   
-<?php if($premium=="NO"){ ?> 
-    <?php include('./includes/wallet.php'); ?>
+?>
+<?php if($premium=="NO"){ ?>
+<?php include('./includes/wallet.php'); ?>
 <?php }else{ ?>
-     <div>Ya eres premium.</div>
-    <?php } ?>
-</div>
+<div>Ya eres premium.</div>
+<?php } ?>
+
 
 <?php include('./includes/footer.php'); ?>

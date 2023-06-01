@@ -1,9 +1,9 @@
-<div class="container-fluid">
+<div class="container mt-3 ">
     <div class="card">
         <div class="card-header" style="text-align:center;">
             Hazte Premium
         </div>
-        <div class="card-body">
+        <div class="card-body mt-2">
             <h5 class="card-title"><button type="button" class="btn btn-info sm" id="conexion_wallet"
                     onclick="conectarMetamask()">Conectar con Metamask</button></h5>
 

@@ -46,7 +46,7 @@ if($_SESSION['login']!="OK"){header("Location: login.php");}
         $category=$_POST['CategoryID'];
         $cambiomedia=$_POST['CambiarMedia'];
         $ownerID=$_SESSION['id'];
-        $queryupdate= "UPDATE Recipes SET RecipeName='$nombre', Recipe='$recipe', MediaID='$cambiomedia' WHERE RecipeID=$id";
+        $queryupdate= "UPDATE Recipes SET RecipeName='$nombre', Recipe='$recipe', MediaID=$cambiomedia,CategoryID=$category WHERE RecipeID=$id";
         mysqli_query($conexion,$queryupdate);
         header("Location: user.php");
     }

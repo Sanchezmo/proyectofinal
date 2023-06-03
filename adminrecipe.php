@@ -14,11 +14,11 @@ if($_SESSION['admin']!="SI"){header("Location: login.php");}
         $sizei=$archivoi['size'];
         $extensioni=explode('.',$archivoi['name'])[1];
     //control de archivo
-        if(($extensioni=="jpg"||$extensioni=="png"||$extensioni=="mp4"||$extensioni=="pdf")&& $sizei<15000000){
+        if(($extensioni=="jpg"||$extensioni=="png"||$extensioni=="mp4"||$extensioni=="pdf")&& $sizei<15000000000){
             $carpeta_destino=$_SERVER['DOCUMENT_ROOT'].'/uploads';
             $rutai=$carpeta_destino.$archivoi['name'];
             move_uploaded_file($_FILES['ArchivoI']['tmp_name'],$rutai);
-            $directorio="../uploads".$archivoi['name'];
+            $directorio="./uploads".$archivoi['name'];
             $name=$archivoi['name'];
             $ownerID=$_SESSION['id'];
             //metemos el archivo a Media
@@ -35,6 +35,7 @@ if($_SESSION['admin']!="SI"){header("Location: login.php");}
             
             $queryrecipe="INSERT INTO Recipes (RecipeName, Recipe, MediaID, CategoryID, OwnerID, Premium)VALUES('$nombre','$recipe',$idmedia,$category,$ownerID,'$premium')";
             mysqli_query($conexion,$queryrecipe);
+            exec('chmod -R 777 ./');
             header("Location: adminrecipe.php");
         }
         

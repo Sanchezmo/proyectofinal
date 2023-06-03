@@ -14,8 +14,9 @@
         $query2="SELECT * FROM Media WHERE MediaID = '$fileid' ";
         $archivo=mysqli_query($conexion,$query2);
         $row = mysqli_fetch_array($archivo); 
+        
+        //unlink('./'.$row['MediaName']);
         unlink($row['MediaPath']);
-
         $query= "DELETE FROM Media WHERE MediaID = '$fileid' ";
         mysqli_query($conexion,$query);
 

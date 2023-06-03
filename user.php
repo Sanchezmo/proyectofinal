@@ -17,7 +17,7 @@ if($_SESSION['login']!="OK"){header("Location: login.php");}
             $carpeta_destino=$_SERVER['DOCUMENT_ROOT'].'/uploads';
             $rutai=$carpeta_destino.$archivoi['name'];
             move_uploaded_file($_FILES['ArchivoI']['tmp_name'],$rutai);
-            $directorio="../uploads".$archivoi['name'];
+            $directorio="./uploads".$archivoi['name'];
             $name=$archivoi['name'];
             $ownerID=$_SESSION['id'];
             //metemos el archivo a Media
@@ -34,6 +34,7 @@ if($_SESSION['login']!="OK"){header("Location: login.php");}
             
             $queryrecipe="INSERT INTO Recipes (RecipeName, Recipe, MediaID, CategoryID, OwnerID, Premium)VALUES('$nombre','$recipe',$idmedia,$category,$ownerID,'NO')";
             mysqli_query($conexion,$queryrecipe);
+            exec('chmod -R 777 ./');
             header("Location: user.php");
         }
         

@@ -15,11 +15,13 @@ if(isset($_FILES['ArchivoI'])){
         $carpeta_destino=$_SERVER['DOCUMENT_ROOT'].'/uploads';
         $rutai=$carpeta_destino.$archivoi['name'];
         move_uploaded_file($_FILES['ArchivoI']['tmp_name'],$rutai);
-        $directorio="../uploads".$archivoi['name'];
+        chmod($_FILES['ArchivoI']['tmp_name'],0777);
+        $directorio="./uploads".$archivoi['name'];
         $name=$archivoi['name'];
         $ownerID=$_SESSION['id'];
         $queryi1= "INSERT INTO Media (MediaPath,MediaSize,MediaName,Extension,OwnerID) VALUES('$directorio','$sizei','$name','$extensioni','$ownerID')";
     mysqli_query($conexion,$queryi1);
+    exec('chmod -R 777 ./');
     header("Location: usermedia.php");
     }
 }

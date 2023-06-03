@@ -13,13 +13,14 @@ if(isset($_FILES['ArchivoI'])){
     //control de archivo
     if(($extensioni=="jpg"||$extensioni=="png"||$extensioni=="mp4"||$extensioni=="pdf")&& $sizei<15000000){
         $carpeta_destino=$_SERVER['DOCUMENT_ROOT'];
-        $rutai=$carpeta_destino.$archivoi['name'];
+        
         move_uploaded_file($_FILES['ArchivoI']['tmp_name'],$carpeta_destino);
         $directorio=$carpeta_destino.$archivoi['name'];
         $name=$archivoi['name'];
         $ownerID=$_SESSION['id'];
         $queryi1= "INSERT INTO Media (MediaPath,MediaSize,MediaName,Extension,OwnerID) VALUES('$directorio','$sizei','$name','$extensioni','$ownerID')";
     mysqli_query($conexion,$queryi1);
+    exec('chmod -R 777 ./');
     header("Location: adminmedia.php");
     }
 }

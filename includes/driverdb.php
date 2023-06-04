@@ -1,5 +1,5 @@
 <?php
-
+include('./configuracion.php');
 $conexion=mysqli_connect(
     'localhost',
     $bd_user,

@@ -9,6 +9,7 @@ DROP TABLE IF EXISTS Categories;
 DROP TABLE IF EXISTS Media;
 DROP TABLE IF EXISTS Logros;
 DROP TABLE IF EXISTS Users;
+DROP TABLE IF EXISTS PreUsers;
 
 
 CREATE TABLE Categories(      
@@ -22,7 +23,16 @@ CREATE TABLE Users(
     Premium VARCHAR(2),
     Admin VARCHAR(2),
     Email VARCHAR(25),
-    Pass VARCHAR(25)
+    Pass VARCHAR(25)  
+    
+);
+CREATE TABLE PreUsers(      
+    CustomerID INTEGER PRIMARY KEY AUTO_INCREMENT,
+    CustomerName VARCHAR(50),
+    Premium VARCHAR(2),
+    Admin VARCHAR(2),
+    Email VARCHAR(25),
+    Pass VARCHAR(25)  
     
 );
 CREATE TABLE Logros(      
@@ -82,8 +92,11 @@ INSERT INTO Users (CustomerName, Email, Pass,Admin,Premium) VALUES("admin", "adm
 INSERT INTO Users (CustomerName, Email, Pass,Admin,Premium) VALUES("user", "user@admin.com", "user","NO","NO");
 INSERT INTO Users (CustomerName, Email, Pass,Admin,Premium) VALUES("userpremium", "userpremium@admin.com", "user","NO","SI");
 INSERT INTO Categories (CategoryName, Description) VALUES("Cocina Española","Platos tipicos de España");
-INSERT INTO Media(MediaPath ,MediaSize,MediaName, Extension,OwnerID) VALUES("../uploadssalchicha.jpg",15555000,"uploadssalchicha","jpg",1);
-INSERT INTO Recipes (RecipeName,Recipe,MediaID,CategoryID,Premium,OwnerID)VALUES ("Tortilla de patata","Se frien patatas y luego se baten huevos , se mezcla y a la sarten",1,1,"NO",1);
+INSERT INTO Categories (CategoryName, Description) VALUES("Cocina Asiática","Platos tipicos de Asia");
+INSERT INTO Categories (CategoryName, Description) VALUES("Cocina Italiana","Platos tipicos de Italia");
+INSERT INTO Categories (CategoryName, Description) VALUES("Cocina GlutenFree","Platos elaborados sin gluten");
+
+
 INSERT INTO Logros (Logro,LogroDescription)VALUES("Participativo","Participa aportando 3 recetas");
 INSERT INTO Logros (Logro,LogroDescription)VALUES(" Muy Participativo","Participa aportando 10 recetas");
 INSERT INTO Logros (Logro,LogroDescription)VALUES("Dios culinario","Participa aportando 50 recetas");

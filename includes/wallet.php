@@ -1,4 +1,4 @@
-<div class="container mt-3 ">
+<div class="container mt-3">
     <div class="card">
         <div class="card-header" style="text-align:center;">
             Hazte Premium

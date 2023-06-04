@@ -1,8 +1,9 @@
 <?php
+
 $conexion=mysqli_connect(
     'localhost',
-    'root',
-    'mysecretpassword',
+    $bd_user,
+    $bd_pass,
     'Recetas'
 );
 /*if(isset($conexion)) {
